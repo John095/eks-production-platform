@@ -42,13 +42,16 @@ resource "aws_db_instance" "main" {
 
   db_name  = "appdb"
   username = "dbadmin"
-  password = "admin123"
+
+  # RDS generates the master password and keeps it in Secrets Manager —
+  # it never appears in code, tfvars, plan output or Terraform state.
+  manage_master_user_password = true
 
   vpc_security_group_ids = [aws_security_group.rds.id]
   db_subnet_group_name   = aws_db_subnet_group.main.name
 
   backup_retention_period = 0
-  skip_final_snapshot    = true
+  skip_final_snapshot     = true
 
   tags = {
     Name = "${var.cluster_name}-db"

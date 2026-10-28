@@ -33,3 +33,8 @@ output "database_endpoint" {
   value       = aws_db_instance.main.endpoint
   sensitive   = true
 }
+
+output "rds_master_user_secret_arn" {
+  description = "Secrets Manager ARN holding the RDS master credentials (read it, don't copy it)"
+  value       = aws_db_instance.main.master_user_secret[0].secret_arn
+}
