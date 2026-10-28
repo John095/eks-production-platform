@@ -114,7 +114,6 @@ cd terraform
 cat > terraform.tfvars <<EOF
 aws_region          = "us-east-1"
 cluster_name        = "production-eks-cluster"
-db_password         = "YourSecurePassword123!"
 availability_zones  = ["us-east-1a", "us-east-1b"]
 EOF
 ```
